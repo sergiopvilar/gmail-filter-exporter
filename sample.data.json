@@ -2,7 +2,7 @@
   "rules": [
     {
       "action": "label",
-      "label": "Pode ser apagado",
+      "label": "Not important",
       "from": [
         "noreply@foobar.com.br",
         "bar@baz.com",
