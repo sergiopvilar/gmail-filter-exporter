@@ -1,11 +1,12 @@
 # Gmail Filter Exporter
 
-This project let's you manage and exporter a `.xml` file with your Gmail filters.
+Manage and export a `.xml` file with your Gmail filters.
 
-## Running
+## How to use
 
  - Rename `sample.data.json` to `data.json`.
+ - Feed  `data.json` with your filters
  - `bundle install`
  - `ruby main.rb`
-
-And you'll get your 'filter.xml' file to import into your gmail.
+ - Get your `filter.xml` file
+ - Go to the bottom of [Gmail filters](https://mail.google.com/mail/u/0/#settings/filters) page and click in the "Import filters" link
