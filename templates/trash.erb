@@ -4,6 +4,20 @@
   <id>tag:mail.google.com,2008:filter:1296067053788</id>
   <updated>2016-10-23T11:20:05Z</updated>
   <content></content>
-  <apps:property name='hasTheWord' value='<% rules.each_with_index do |from, index| %><%=from%><% if index < rules.size - 1 %> OR <% end %><% end %>'/>
+
+  <% if type == 'word' %>
+  <apps:property name='hasTheWord' value='<%=value%>'/>
+  <% end %>
+
+  <% if type == 'from' %>
+  <apps:property name='from' value='<%=value%>'/>
+  <% end %>
+
+  <% if type == 'subject' %>
+  <apps:property name='subject' value='<%=value%>'/>
+  <% end %>
+
   <apps:property name='shouldTrash' value='true'/>
+  <apps:property name='sizeOperator' value='s_sl'/>
+  <apps:property name='sizeUnit' value='s_smb'/>
 </entry>

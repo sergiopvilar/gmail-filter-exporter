@@ -4,8 +4,27 @@
   <id>tag:mail.google.com,2008:filter:1449576593001</id>
   <updated>2016-10-23T11:42:45Z</updated>
   <content></content>
-  <apps:property name='hasTheWord' value='<% rules.each_with_index do |from, index| %><%=from%><% if index < rules.size - 1 %> OR <% end %><% end %>'/>
+
+  <% if type == 'word' %>
+  <apps:property name='hasTheWord' value='<%=value%>'/>
+  <% end %>
+
+  <% if type == 'from' %>
+  <apps:property name='from' value='<%=value%>'/>
+  <% end %>
+
+  <% if type == 'subject' %>
+  <apps:property name='subject' value='<%=value%>'/>
+  <% end %>
+
   <apps:property name='label' value='<%= rule['label'] %>'/>
   <apps:property name='sizeOperator' value='s_sl'/>
   <apps:property name='sizeUnit' value='s_smb'/>
+
+  <% unless rule['custom'].nil? %>
+    <% rule['custom'].each do |key, value| %>
+    <apps:property name='<%=key%>' value='<%=value%>'/>
+    <% end %>
+  <% end %>
+  
 </entry>

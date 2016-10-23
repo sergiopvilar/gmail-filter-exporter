@@ -5,13 +5,23 @@ data = JSON.parse(File.read('./data.json'))
 entries = ''
 
 data['rules'].each do |rule|
-  rows = []
-  rows = rule['words'] unless rule['words'].nil?
-  rule['from'].each { |from| rows << "from:#{from}" } unless rule['from'].nil?
-  rule['subject'].each { |subject| rows << "subject:#{subject}" } unless rule['subject'].nil?
-  rows.each_slice(30).to_a.each do |rules|
+
+  rule['words'].each do |value|
+    type = 'word'
     entries << ERB.new(File.read("./templates/#{rule['action']}.erb")).result(binding)
-  end
+  end unless rule['words'].nil?
+
+  rule['from'].each do |value|
+    type = 'from'
+    entries << ERB.new(File.read("./templates/#{rule['action']}.erb")).result(binding)
+  end unless rule['from'].nil?
+
+  rule['subject'].each do |value|
+    type = 'subject'
+    entries << ERB.new(File.read("./templates/#{rule['action']}.erb")).result(binding)
+  end unless rule['subject'].nil?
+
+
 end
 
 File.write('./filter.xml', ERB.new(File.read("./templates/main.erb")).result(binding))
