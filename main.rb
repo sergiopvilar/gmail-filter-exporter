@@ -6,7 +6,7 @@ entries = ''
 
 data['rules'].each do |rule|
 
-  ['words', 'from', 'subject'].each do |type|
+  %w(words from subject).each do |type|
     rule[type].each do |value|
       entries << ERB.new(File.read("./templates/#{rule['action']}.erb")).result(binding)
     end unless rule[type].nil?
